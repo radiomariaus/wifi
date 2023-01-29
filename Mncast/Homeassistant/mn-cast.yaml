@@ -99,3 +99,4 @@ display:
     address: 0x3C
     lambda: |-
       it.strftime(0, 60, id(my_font), TextAlign::BASELINE_LEFT, "%H:%M", id(esptime).now());
+    id: media_display
