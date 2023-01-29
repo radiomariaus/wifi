@@ -7,7 +7,7 @@ project:
     version: "1.0"
 
 dashboard_import:
-  package_import_url: github://RASPIAUDIO/raspiaudio.github.io/Mncast/Homeassistant/mn-cast.yalm
+  package_import_url: https://github.com/RASPIAUDIO/raspiaudio.github.io/blob/main/Mncast/Homeassistant/mn-cast.yaml
   import_full_config: false
 
 esp32:
