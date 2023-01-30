@@ -1,14 +1,7 @@
+
 esphome:
-  name: "${name}"
+  name: "mn-cast"
   name_add_mac_suffix: true
-
-project:
-    name: raspiaudio.mn-cast.esphome
-    version: "1.0"
-
-dashboard_import:
-  package_import_url: https://github.com/RASPIAUDIO/raspiaudio.github.io/blob/main/Mncast/Homeassistant/mn-cast.yaml
-  import_full_config: false
 
 esp32:
   board: esp-wrover-kit
@@ -81,9 +74,6 @@ i2c:
   sda: GPIO18
   scl: GPIO23
 
-infrared:
-  rx_pin: GPIO21
-
 font:
   - file: "gfonts://Roboto"
     id: my_font
@@ -100,3 +90,14 @@ display:
     lambda: |-
       it.strftime(0, 60, id(my_font), TextAlign::BASELINE_LEFT, "%H:%M", id(esptime).now());
     id: media_display
+
+    
+
+remote_receiver:
+  pin:
+    number: GPIO21
+    inverted: false
+    mode:
+      input: true
+      pullup: true
+  dump: all
