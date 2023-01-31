@@ -1,6 +1,11 @@
+  
+# These substitutions allow the end user to override certain values
+substitutions:
+  name: "mn-cast"
+
 
 esphome:
-  name: "mn-cast"
+  name: "${name}"
   name_add_mac_suffix: true
 
 esp32:
