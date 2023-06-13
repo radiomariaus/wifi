@@ -1,0 +1,12 @@
+{
+  "name": "Simple WiFi Speaker for MUSE LUXE USA SPANISH",
+  "version": "1.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "./radiomaria_US-ES.bin", "offset": 0}
+      ]
+    }
+  ]
+}
