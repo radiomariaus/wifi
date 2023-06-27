@@ -1,0 +1,12 @@
+{
+  "name": "Simple WiFi Speaker for MUSE LUXE LITHUANIA",
+  "version": "1.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "./LT_v1.0", "offset": 0}
+      ]
+    }
+  ]
+}
