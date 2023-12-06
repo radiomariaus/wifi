@@ -1,11 +1,11 @@
 {
   "name": "Simple WiFi Speaker for MUSE LUXE ITALY",
-  "version": "1.0",
+  "version": "1.2",
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "./IT_v1.0.bin", "offset": 0}
+        { "path": "./RadioMaria_IT.v1.2.bin", "offset": 0}
       ]
     }
   ]
