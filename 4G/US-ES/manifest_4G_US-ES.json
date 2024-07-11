@@ -1,0 +1,12 @@
+{
+  "name": "Simple 4G Speaker for 4G USA SPANISH",
+  "version": "0.4",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "./maria4GV04.bin", "offset": 0}
+      ]
+    }
+  ]
+}
