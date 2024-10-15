@@ -1,6 +1,6 @@
 {
   "name": "Simple WiFi Speaker for MUSE LUXE CANADA v1.4",
-  "version": "1.3",
+  "version": "1.4",
   "builds": [
     {
       "chipFamily": "ESP32",
