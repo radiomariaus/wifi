@@ -90,9 +90,9 @@ img{
   width:150px;
 }
 
-.lux-application-form {
+/*.lux-application-form {
   display: none; /* Nascondi per default */
-}
+/*}*/
 	  
 .m{
   grid-column: 1;
@@ -258,7 +258,7 @@ img{
       .catch(error => {
         console.log(error);
         const button = document.querySelector('esp-web-install-button');
-        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device please let us know if you want it !';
+        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it !';
 
         button.style.visibility = "hidden";
       });
