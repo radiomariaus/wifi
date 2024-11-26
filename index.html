@@ -178,28 +178,28 @@ img{
       </td>
       <td></td>
       <td>
-	<div class="device-form">
+	<div class="device-form lux-application-form">
           <input type="radio" name="application" value="AL" onclick="loadContent()"> AL
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="CA" onclick="loadContent()"> CA
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="IT" onclick="loadContent()"> IT
         </div>
-	<div class="device-form">
+	<div class="device-form lux-application-form">
           <input type="radio" name="application" value="LT" onclick="loadContent()"> LT
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="RU" onclick="loadContent()"> RU
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="US-EN" onclick="loadContent()"> US-EN
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="US-ES" onclick="loadContent()"> US-ES
         </div>
-        <div class="device-form">
+        <div class="device-form lux-application-form">
           <input type="radio" name="application" value="US-IT" onclick="loadContent()"> US-IT
         </div>
       </td>
@@ -215,7 +215,7 @@ img{
 
   <p class="button-row" align="center">
     <esp-web-install-button class="upload-button"></esp-web-install-button>
-
+  </p>
 
 
 
@@ -230,6 +230,19 @@ img{
       document.getElementById("device").innerHTML = device;
       document.getElementById("application").innerHTML = application;
 
+      //hide application list for 4G device
+      if (device === "4G") {
+	var applicationForms = document.querySelectorAll('.lux-application-form');
+	applicationForms.forEach(function(form) {
+	  form.style.display = 'none';
+	});
+      } else {
+	var applicationForms = document.querySelectorAll('.lux-application-form');
+	applicationForms.forEach(function(form) {
+	  form.style.display = 'block';
+	});
+      }
+	    
       fetch(`./${device}/${application}/${application}.html`)
       .then(response => {
         if (!response.ok) {
@@ -251,7 +264,7 @@ img{
       .catch(error => {
         console.log(error);
         const button = document.querySelector('esp-web-install-button');
-        document.getElementById('descriptif').innerHTML = 'This project as not yet been ported for this device please let us know if you want it !';
+        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device please let us know if you want it !';
 
         button.style.visibility = "hidden";
       });
@@ -263,7 +276,7 @@ img{
 <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
 <p></p>
 <p>V-24.10.14.22.52</p>
-		
+	</center>	
 		
     </footer>
   </body>
