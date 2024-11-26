@@ -90,7 +90,10 @@ img{
   width:150px;
 }
 
-
+.lux-application-form {
+  display: none; /* Nascondi per default */
+}
+	  
 .m{
   grid-column: 1;
   height: 220px;
@@ -222,7 +225,7 @@ img{
       document.getElementById("device").innerHTML = device;
       document.getElementById("application").innerHTML = application;
 
-      //show application list for lux device
+      //show application list for lux device only if lux is selected
       var applicationForms = document.querySelectorAll('.lux-application-form');
       if (device === "Luxe") {
         applicationForms.forEach(function(form) {
