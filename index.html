@@ -136,8 +136,7 @@ img{
 
 <body>
 <header>
-  <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">   </header>
-<div class="content">
+  <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">   
 </header>
   <h1 class="logo">RADIOMARIA Wi-Fi & 4G Radio<br> </h1>
 
@@ -230,17 +229,16 @@ img{
       document.getElementById("device").innerHTML = device;
       document.getElementById("application").innerHTML = application;
 
-      //hide application list for 4G device
-      if (device === "4G") {
-	var applicationForms = document.querySelectorAll('.lux-application-form');
-	applicationForms.forEach(function(form) {
-	  form.style.display = 'none';
-	});
+      //show application list for lux device
+      var applicationForms = document.querySelectorAll('.lux-application-form');
+      if (device === "Luxe") {
+        applicationForms.forEach(function(form) {
+          form.style.display = 'block';
+        });
       } else {
-	var applicationForms = document.querySelectorAll('.lux-application-form');
-	applicationForms.forEach(function(form) {
-	  form.style.display = 'block';
-	});
+        applicationForms.forEach(function(form) {
+          form.style.display = 'none';
+        });
       }
 	    
       fetch(`./${device}/${application}/${application}.html`)
@@ -269,6 +267,9 @@ img{
         button.style.visibility = "hidden";
       });
     }
+
+    // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
+    document.addEventListener('DOMContentLoaded', loadContent);
     </script>
 
     <footer>
