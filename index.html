@@ -217,66 +217,37 @@ img{
     <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
 
     <script>
-
     function loadContent() {
-    var device = document.querySelector('input[name="device"]:checked').value;
+        var device = document.querySelector('input[name="device"]:checked').value;
 
-    // Mostra/Nascondi i menu basandosi sulla selezione
-    var luxeForms = document.querySelectorAll('.lux-application-form');
-    if (device === "Luxe") {
-        luxeForms.forEach(function (form) {
-            form.style.display = 'block';
-        });
-    } else {
-        luxeForms.forEach(function (form) {
-            form.style.display = 'none';
-        });
-    }
-
-    // Mostra il menu GLOBAL per 4G
-    var globalMenu = document.getElementById('global-menu');
-    if (device === "4G") {
-        globalMenu.style.display = 'block';
-    } else {
-        globalMenu.style.display = 'none';
-    }
-
-    // Aggiorna la selezione corrente
-    document.getElementById("device").innerHTML = device;
-    document.getElementById("application").innerHTML = '';
-}
-
-	    
-      fetch(`./${device}/${application}/${application}.html`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // Mostra/Nascondi i menu basandosi sulla selezione
+        var luxeForms = document.querySelectorAll('.lux-application-form');
+        if (device === "Luxe") {
+            luxeForms.forEach(function (form) {
+                form.style.display = 'block';
+            });
         } else {
-          const button = document.querySelector('esp-web-install-button');
-          button.manifest = `./${device}/${application}/manifest_${device}_${application}.json`;
-          button.classList.remove('invisible');
-          button.style.visibility = "visible";
-          return response.text()
+            luxeForms.forEach(function (form) {
+                form.style.display = 'none';
+            });
         }
-      })
-      .then(data => {
-        document.getElementById('descriptif').innerHTML = data;
-        // Enlever le bouton upload-button si le fichier n'est pas trouvé
 
+        // Mostra il menu GLOBAL per 4G
+        var globalMenu = document.getElementById('global-menu');
+        if (device === "4G") {
+            globalMenu.style.display = 'block';
+        } else {
+            globalMenu.style.display = 'none';
+        }
 
-      })
-      .catch(error => {
-        console.log(error);
-        const button = document.querySelector('esp-web-install-button');
-        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it !';
-
-        button.style.visibility = "hidden";
-      });
+        // Aggiorna la selezione corrente
+        document.getElementById("device").innerHTML = device;
+        document.getElementById("application").innerHTML = '';
     }
 
     // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
     document.addEventListener('DOMContentLoaded', loadContent);
-    </script>
+</script>
 
 <footer>
  <center>
