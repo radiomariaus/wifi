@@ -3,26 +3,139 @@
 <head>
   <meta charset="utf-8" />
   <title>RADIOMARIA Wi-Fi & 4G Radio fw installer</title>
-  <meta name="description" content="Easily allow users to install RadioMaria-ESP32 firmware on the web." />
+  <meta
+  name="description"
+  content="Easily allow users to install RadioMaria-ESP32 firmware on the web."
+  />
   <meta name="viewport" content="width=device-width" />
   <meta name="color-scheme" content="dark light" />
 
   <style>
-    /* Your existing styles */
-    /* ... */
-    
-    .global-application-form {
-      display: none; /* Hidden by default */
-    }
-  </style>
+  header{
+    background-color: #6EC1E4;
+    border-top: 1px solid #ccc;
+    padding-top: 24px;
+    text-align: center;
+
+  }
+  .logo {
+    text-align: center;
+  }
+  footer{
+ 
+  }
+  body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, sans-serif;
+    padding: 0;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+
+}
+h2 {
+  margin-top: 2em;
+}
+
+td {
+  height: 50px;
+  vertical-align: center;
+}
+h3 {
+  margin-top: 1.5em;
+}
+a {
+  color: #03a9f4;
+}
+.invisible {
+  visibility: hidden;
+}
+.hidden {
+  display: none;
+}
+esp-web-install-button[install-unsupported] {
+  visibility: inherit;
+}
+.content pre {
+  max-width: 100%;
+  overflow-y: scroll;
+}
+.footer {
+  margin-top: 24px;
+
+  padding-top: 24px;
+  text-align: center;
+}
+.footer .initiative {
+  font-style: italic;
+  margin-top: 16px;
+}
+table {
+  border-spacing:  0 15px;
+  display: table;
+
+}
+td, tr, th{
+  padding: 8px;
+  vertical-align:middle;
+
+}
+
+img{
+  width:150px;
+}
+
+/*.lux-application-form {
+  display: none; /* Nascondi per default */
+/*}*/
+	  
+.m{
+  grid-column: 1;
+  height: 220px;
+  width:300px;
+  text-align: center;
+}
+.s{
+  height: 200px;
+  width:300px;
+}
+
+.l{
+  width:180px;
+  height: 200px;
+
+}
+.explication{
+  width:auto;
+  height: auto;
+  padding: 20px;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #333;
+    color: #fff;
+  }
+  a {
+    color: #58a6ff;
+  }
+}
+</style>
 </head>
 
 <body>
 <header>
-  <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">
+  <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">   
 </header>
 <div class="content">
-  <h1 class="logo">RADIOMARIA Wi-Fi & 4G Radio<br></h1>
+  <h1 class="logo">RADIOMARIA Wi-Fi & 4G Radio<br> </h1>
+
 
   <table align="center">
     <tr>
@@ -35,19 +148,32 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td >
         <div class="device-form">
           <img src="./Luxe/Luxe.png" alt="Luxe">
           <input type="radio" name="device" value="Luxe" onclick="loadContent()"> Luxe
         </div>
-        <div class="device-form">
+
+	<div class="device-form">
           <img src="./4G/4G.png" alt="4G">
           <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
         </div>
+
+<!-- 
+        <div class="device-form">
+          <img src="./Mncast/Mncast.png" alt="MnCast">
+          <input type="radio" name="device" value="Mncast" onclick="loadContent()"> Mn Cast
+        </div>
+
+        <div class="device-form">
+          <img src="./Proto/Proto.png" alt="Proto">
+          <input type="radio" name="device" value="Proto" onclick="loadContent()"> Proto
+        </div>
+-->
       </td>
       <td></td>
       <td>
-        <div class="device-form lux-application-form">
+	<div class="device-form lux-application-form">
           <input type="radio" name="application" value="AL" onclick="loadContent()"> AL
         </div>
         <div class="device-form lux-application-form">
@@ -56,7 +182,7 @@
         <div class="device-form lux-application-form">
           <input type="radio" name="application" value="IT" onclick="loadContent()"> IT
         </div>
-        <div class="device-form lux-application-form">
+	<div class="device-form lux-application-form">
           <input type="radio" name="application" value="LT" onclick="loadContent()"> LT
         </div>
         <div class="device-form lux-application-form">
@@ -71,11 +197,6 @@
         <div class="device-form lux-application-form">
           <input type="radio" name="application" value="US-IT" onclick="loadContent()"> US-IT
         </div>
-
-        <!-- Global application form for 4G -->
-        <div class="device-form global-application-form">
-          <input type="radio" name="application" value="GLOBAL" onclick="loadContent()"> GLOBAL
-        </div>
       </td>
     </tr>
   </table>
@@ -83,8 +204,8 @@
   <div id="descriptif"></div>
 
   <div id="selection">
-    Selected Device: <span id="device"></span><br>
-    Selected Application: <span id="application"></span>
+    Selected Device : <span id="device"></span><br>
+    Selected Application : <span id="application"></span>
   </div>
 
   <p class="button-row" align="center">
@@ -92,39 +213,31 @@
   </p>
 </div>
 
-<script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
 
-<script>
-  function loadContent() {
-    var device = document.querySelector('input[name="device"]:checked')?.value;
-    var application = document.querySelector('input[name="application"]:checked')?.value;
+    <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
 
-    document.getElementById("device").innerHTML = device;
-    document.getElementById("application").innerHTML = application;
+    <script>
 
-    // Show application list for Luxe device only if Luxe is selected
-    var luxApplicationForms = document.querySelectorAll('.lux-application-form');
-    var globalApplicationForm = document.querySelector('.global-application-form');
-    
-    if (device === "Luxe") {
-      luxApplicationForms.forEach(function(form) {
-        form.style.display = 'block';
-      });
-      globalApplicationForm.style.display = 'none';
-    } else if (device === "4G") {
-      luxApplicationForms.forEach(function(form) {
-        form.style.display = 'none';
-      });
-      globalApplicationForm.style.display = 'block'; // Show the global option
-    } else {
-      luxApplicationForms.forEach(function(form) {
-        form.style.display = 'none';
-      });
-      globalApplicationForm.style.display = 'none'; // Hide the global option
-    }
+    function loadContent() {
+      var device = document.querySelector('input[name = "device"]:checked').value;
+      var application = document.querySelector('input[name = "application"]:checked').value;
 
-    // Fetch the appropriate content
-    fetch(`./${device}/${application}/${application}.html`)
+      document.getElementById("device").innerHTML = device;
+      document.getElementById("application").innerHTML = application;
+
+      //show application list for lux device only if lux is selected
+      var applicationForms = document.querySelectorAll('.lux-application-form');
+      if (device === "Luxe") {
+        applicationForms.forEach(function(form) {
+          form.style.display = 'block';
+        });
+      } else {
+        applicationForms.forEach(function(form) {
+          form.style.display = 'none';
+        });
+      }
+	    
+      fetch(`./${device}/${application}/${application}.html`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -138,26 +251,30 @@
       })
       .then(data => {
         document.getElementById('descriptif').innerHTML = data;
+        // Enlever le bouton upload-button si le fichier n'est pas trouvé
+
+
       })
       .catch(error => {
         console.log(error);
         const button = document.querySelector('esp-web-install-button');
-        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it!';
+        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it !';
+
         button.style.visibility = "hidden";
       });
-  }
+    }
 
-  document.addEventListener('DOMContentLoaded', loadContent);
-</script>
+    // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
+    document.addEventListener('DOMContentLoaded', loadContent);
+    </script>
 
 <footer>
-  <center>
-    <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p></p>
-    <p>V-24.10.14.22.52</p>
-  </center>
+ <center>
+  <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
+  <p></p>
+  <p>V-24.10.14.22.52</p>
+ </center>	
 </footer>
 
 </body>
 </html>
-
