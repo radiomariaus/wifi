@@ -240,8 +240,7 @@ img{
   if (device !== "Luxe") {
     document.getElementById("application").textContent = "N/A";
   } else {
-    var application = document.querySelector('input[name="application"]:checked');
-    document.getElementById("application").textContent = application ? application.value : "None";
+    document.getElementById("application").innerHTML = application;
   }
 	    
       fetch(`./${device}/${application}/${application}.html`)
