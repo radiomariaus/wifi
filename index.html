@@ -220,15 +220,15 @@ img{
 
     function loadContent() {
   var device = document.querySelector('input[name="device"]:checked').value;
-  var applicationForms = document.querySelectorAll('.lux-application-form');
+  var application = document.querySelectorAll('.lux-application-form');
   
   // Mostra/Nascondi il menu secondario in base al dispositivo selezionato
   if (device === "Luxe") {
-    applicationForms.forEach(function(form) {
+    application.forEach(function(form) {
       form.style.display = 'block';
     });
   } else {
-    applicationForms.forEach(function(form) {
+    application.forEach(function(form) {
       form.style.display = 'none';
     });
   }
