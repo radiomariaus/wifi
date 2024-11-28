@@ -205,8 +205,8 @@ img{
   <div id="descriptif"></div>
 
   <div id="selection">
-    Selected Device : <span id="device"></span><br>
-    Selected Application : <span id="application"></span>
+<p>Selected Device: <span id="device"></span></p>
+<p>Selected Application: <span id="application"></span></p>
   </div>
 
   <p class="button-row" align="center">
@@ -254,6 +254,10 @@ img{
     document.addEventListener('DOMContentLoaded', loadContent);
 </script>
 
+<div id="global-menu" class="device-form" style="display: none;">
+    <input type="radio" name="application" value="GLOBAL1" onclick="updateApplication('GLOBAL')"> GLOBAL1
+    <input type="radio" name="application" value="GLOBAL2" onclick="updateApplication('GLOBAL')"> GLOBAL2
+</div>
 
 <footer>
  <center>
