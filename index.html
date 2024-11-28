@@ -219,23 +219,30 @@ img{
     <script>
 
     function loadContent() {
-      var device = document.querySelector('input[name = "device"]:checked').value;
-      var application = document.querySelector('input[name = "application"]:checked').value;
+  var device = document.querySelector('input[name="device"]:checked').value;
+  var applicationForms = document.querySelectorAll('.lux-application-form');
+  
+  // Mostra/Nascondi il menu secondario in base al dispositivo selezionato
+  if (device === "Luxe") {
+    applicationForms.forEach(function(form) {
+      form.style.display = 'block';
+    });
+  } else {
+    applicationForms.forEach(function(form) {
+      form.style.display = 'none';
+    });
+  }
 
-      document.getElementById("device").innerHTML = device;
-      document.getElementById("application").innerHTML = application;
+  // Aggiorna il testo per il dispositivo selezionato
+  document.getElementById("device").textContent = device;
 
-      //show application list for lux device only if lux is selected
-      var applicationForms = document.querySelectorAll('.lux-application-form');
-      if (device === "Luxe") {
-        applicationForms.forEach(function(form) {
-          form.style.display = 'block';
-        });
-      } else {
-        applicationForms.forEach(function(form) {
-          form.style.display = 'none';
-        });
-      }
+  // Nasconde l'applicazione selezionata se non necessaria
+  if (device !== "Luxe") {
+    document.getElementById("application").textContent = "N/A";
+  } else {
+    var application = document.querySelector('input[name="application"]:checked');
+    document.getElementById("application").textContent = application ? application.value : "None";
+  }
 	    
       fetch(`./${device}/${application}/${application}.html`)
       .then(response => {
