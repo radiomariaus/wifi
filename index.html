@@ -218,36 +218,41 @@ img{
 
     <script>
     function loadContent() {
+        // Recupera il dispositivo selezionato (LUXE o 4G)
         var device = document.querySelector('input[name="device"]:checked').value;
 
         // Mostra/Nascondi i menu basandosi sulla selezione
         var luxeForms = document.querySelectorAll('.lux-application-form');
+        var globalMenu = document.getElementById('global-menu');
+
         if (device === "Luxe") {
             luxeForms.forEach(function (form) {
                 form.style.display = 'block';
             });
-        } else {
+            globalMenu.style.display = 'none';
+        } else if (device === "4G") {
             luxeForms.forEach(function (form) {
                 form.style.display = 'none';
             });
-        }
-
-        // Mostra il menu GLOBAL per 4G
-        var globalMenu = document.getElementById('global-menu');
-        if (device === "4G") {
             globalMenu.style.display = 'block';
-        } else {
-            globalMenu.style.display = 'none';
         }
 
-        // Aggiorna la selezione corrente
-        document.getElementById("device").innerHTML = device;
-        document.getElementById("application").innerHTML = '';
+        // Aggiorna la visualizzazione di Selected Device
+        document.getElementById("device").textContent = device;
+
+        // Reset Selected Application
+        document.getElementById("application").textContent = device === "4G" ? "GLOBAL" : "";
+    }
+
+    function updateApplication(app) {
+        // Aggiorna la visualizzazione di Selected Application
+        document.getElementById("application").textContent = app;
     }
 
     // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
     document.addEventListener('DOMContentLoaded', loadContent);
 </script>
+
 
 <footer>
  <center>
