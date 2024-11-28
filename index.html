@@ -3,306 +3,198 @@
 <head>
   <meta charset="utf-8" />
   <title>RADIOMARIA Wi-Fi & 4G Radio fw installer</title>
-  <meta
-  name="description"
-  content="Easily allow users to install RadioMaria-ESP32 firmware on the web."
-  />
+  <meta name="description" content="Easily allow users to install RadioMaria-ESP32 firmware on the web." />
   <meta name="viewport" content="width=device-width" />
   <meta name="color-scheme" content="dark light" />
 
   <style>
-  header{
-    background-color: #6EC1E4;
-    border-top: 1px solid #ccc;
-    padding-top: 24px;
-    text-align: center;
-
-  }
-  .logo {
-    text-align: center;
-  }
-  footer{
- 
-  }
-  body {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, sans-serif;
-    padding: 0;
-    margin: 0;
-    line-height: 1.4;
-  }
-  .content {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 12px;
-  }
-
-}
-h2 {
-  margin-top: 2em;
-}
-
-td {
-  height: 50px;
-  vertical-align: center;
-}
-h3 {
-  margin-top: 1.5em;
-}
-a {
-  color: #03a9f4;
-}
-.invisible {
-  visibility: hidden;
-}
-.hidden {
-  display: none;
-}
-esp-web-install-button[install-unsupported] {
-  visibility: inherit;
-}
-.content pre {
-  max-width: 100%;
-  overflow-y: scroll;
-}
-.footer {
-  margin-top: 24px;
-
-  padding-top: 24px;
-  text-align: center;
-}
-.footer .initiative {
-  font-style: italic;
-  margin-top: 16px;
-}
-table {
-  border-spacing:  0 15px;
-  display: table;
-
-}
-td, tr, th{
-  padding: 8px;
-  vertical-align:middle;
-
-}
-
-img{
-  width:150px;
-}
-
-/*.lux-application-form {
-  display: none; /* Nascondi per default */
-/*}*/
-	  
-.m{
-  grid-column: 1;
-  height: 220px;
-  width:300px;
-  text-align: center;
-}
-.s{
-  height: 200px;
-  width:300px;
-}
-
-.l{
-  width:180px;
-  height: 200px;
-
-}
-.explication{
-  width:auto;
-  height: auto;
-  padding: 20px;
-
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #333;
-    color: #fff;
-  }
-  a {
-    color: #58a6ff;
-  }
-}
-</style>
-
-<style>
-    #4g-container img {
-        width: 150px;
+    header {
+      background-color: #6EC1E4;
+      border-top: 1px solid #ccc;
+      padding-top: 24px;
+      text-align: center;
     }
-
-    #4g-container .device-form {
-        text-align: center;
-        padding: 8px;
+    .logo {
+      text-align: center;
     }
-
-    #4g-container input[type="radio"] {
-        margin-top: 8px;
+    body {
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      padding: 0;
+      margin: 0;
+      line-height: 1.4;
     }
-</style>
-
-
+    .content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 12px;
+    }
+    h2 {
+      margin-top: 2em;
+    }
+    td {
+      height: 50px;
+      vertical-align: middle;
+    }
+    h3 {
+      margin-top: 1.5em;
+    }
+    a {
+      color: #03a9f4;
+    }
+    .hidden {
+      display: none;
+    }
+    .device-form {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .device-form img {
+      width: 150px;
+    }
+    .footer {
+      margin-top: 24px;
+      padding-top: 24px;
+      text-align: center;
+    }
+    .footer .initiative {
+      font-style: italic;
+      margin-top: 16px;
+    }
+    table {
+      border-spacing: 0 15px;
+      display: table;
+      width: 100%;
+    }
+    td, th {
+      padding: 8px;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">   
-</header>
-<div class="content">
-  <h1 class="logo">RADIOMARIA Wi-Fi & 4G Radio<br> </h1>
+  <header>
+    <img src="./images/RadioMaria_rgb.jpeg" alt="logo" class="logo">
+  </header>
+  <div class="content">
+    <h1 class="logo">RADIOMARIA Wi-Fi & 4G Radio<br> </h1>
 
-
-  <table align="center">
-    <tr>
-      <td>
-        <label>1. Choose a device:</label>
-      </td>
-      <td></td>
-      <td>
-        <label>2. Choose an application:</label>
-      </td>
-    </tr>
-    <tr>
-      <td >
-        <div class="device-form">
-          <img src="./Luxe/Luxe.png" alt="Luxe">
-          <input type="radio" name="device" value="Luxe" onclick="loadContent()"> Luxe
-        </div>
-
-	<div class="device-form">
-          <img src="./4G/4G.png" alt="4G">
-          <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
-        </div>
-
-<!-- 
-        <div class="device-form">
-          <img src="./Mncast/Mncast.png" alt="MnCast">
-          <input type="radio" name="device" value="Mncast" onclick="loadContent()"> Mn Cast
-        </div>
-
-        <div class="device-form">
-          <img src="./Proto/Proto.png" alt="Proto">
-          <input type="radio" name="device" value="Proto" onclick="loadContent()"> Proto
-        </div>
--->
-      </td>
-      <td></td>
-      <td>
-	      
-	<div class="device-form lux-application-form">
-          <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
-        </div>
-	<div class="device-form lux-application-form">
-          <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES
-        </div>
-        <div class="device-form lux-application-form">
-          <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
-        </div>
-      </td>
-    </tr>
-  </table>
-
-	<table align="center" id="4g-container" style="display: none;">
-    <tr>
+    <table align="center">
+      <tr>
         <td>
-            <!-- Tasto 4G -->
-            <div class="device-form">
-                <img src="./4G/4G.png" alt="4G">
-                <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
-            </div>
+          <label>1. Choose a device:</label>
+        </td>
+        <td></td>
+        <td>
+          <label>2. Choose an application:</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="device-form">
+            <img src="./Luxe/Luxe.png" alt="Luxe">
+            <input type="radio" name="device" value="Luxe" onclick="loadContent()"> Luxe
+          </div>
+          <div class="device-form">
+            <img src="./4G/4G.png" alt="4G">
+            <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
+          </div>
+        </td>
+        <td></td>
+        <td>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES
+          </div>
+          <div class="device-form lux-application-form">
+            <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Sezione 4G con il tasto GLOBAL -->
+    <table align="center" id="4g-container" class="hidden">
+      <tr>
+        <td>
+          <div class="device-form">
+            <img src="./4G/4G.png" alt="4G">
+            <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
+          </div>
         </td>
         <td>
-            <!-- Tasto GLOBAL -->
-            <div class="device-form">
-                <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
-            </div>
+          <div class="device-form">
+            <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
+          </div>
         </td>
-    </tr>
-</table>
+      </tr>
+    </table>
 
-  <div id="descriptif"></div>
+    <div id="descriptif"></div>
 
-  <div id="selection">
-<p>Selected Device: <span id="device"></span></p>
-<p>Selected Application: <span id="application"></span></p>
+    <div id="selection">
+      <p>Selected Device: <span id="device"></span></p>
+      <p>Selected Application: <span id="application"></span></p>
+    </div>
+
+    <p class="button-row" align="center">
+      <esp-web-install-button class="upload-button"></esp-web-install-button>
+    </p>
   </div>
 
-  <p class="button-row" align="center">
-    <esp-web-install-button class="upload-button"></esp-web-install-button>
-  </p>
-</div>
-
-<div id="global-menu" class="device-form" style="display: none;">
-    <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
-</div>
-
-    <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
-
-    <script>
-	    
+  <script>
     function loadContent() {
-    var device = document.querySelector('input[name="device"]:checked').value;
+      var device = document.querySelector('input[name="device"]:checked');
+      document.getElementById("device").innerHTML = device ? device.value : "";
 
-    document.getElementById("device").innerHTML = device;
-    document.getElementById("application").innerHTML = ""; // Reset application
+      document.getElementById("application").innerHTML = ""; // Reset application
 
-    // Gestione visibilità menu
-    var applicationForms = document.querySelectorAll('.lux-application-form');
-    var container4G = document.getElementById('4g-container');
+      var applicationForms = document.querySelectorAll('.lux-application-form');
+      var container4G = document.getElementById('4g-container');
 
-    if (device === "Luxe") {
+      if (device && device.value === "Luxe") {
         applicationForms.forEach(form => form.style.display = 'block');
         container4G.style.display = 'none';
-    } else if (device === "4G") {
+      } else if (device && device.value === "4G") {
         applicationForms.forEach(form => form.style.display = 'none');
-        container4G.style.display = 'table'; // Mostra tabella 4G
-    } else {
+        container4G.style.display = 'table'; // Show 4G table
+      } else {
         applicationForms.forEach(form => form.style.display = 'none');
         container4G.style.display = 'none';
-    }
-}
-
-        // Aggiorna la visualizzazione di Selected Device
-        document.getElementById("device").textContent = device;
-
-        // Reset Selected Application
-        document.getElementById("application").textContent = device === "4G" ? "GLOBAL" : "";
+      }
     }
 
     function updateApplication(app) {
-        // Aggiorna la visualizzazione di Selected Application
-        document.getElementById("application").textContent = app;
+      document.getElementById("application").textContent = app;
     }
 
-    // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
     document.addEventListener('DOMContentLoaded', loadContent);
-</script>
-	
+  </script>
 
-<footer>
- <center>
-  <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-  <p></p>
-  <p>V-24.10.14.22.52</p>
- </center>	
-</footer>
-
+  <footer>
+    <center>
+      <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
+      <p></p>
+      <p>V-24.10.14.22.52</p>
+    </center>
+  </footer>
 </body>
 </html>
+
