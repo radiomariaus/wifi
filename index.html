@@ -202,6 +202,24 @@ img{
     </tr>
   </table>
 
+	<table align="center" id="4g-container" style="display: none;">
+    <tr>
+        <td>
+            <!-- Tasto 4G -->
+            <div class="device-form">
+                <img src="./4G/4G.png" alt="4G">
+                <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
+            </div>
+        </td>
+        <td>
+            <!-- Tasto GLOBAL -->
+            <div class="device-form">
+                <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
+            </div>
+        </td>
+    </tr>
+</table>
+
   <div id="descriptif"></div>
 
   <div id="selection">
@@ -214,6 +232,9 @@ img{
   </p>
 </div>
 
+<div id="global-menu" class="device-form" style="display: none;">
+    <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
+</div>
 
     <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
 
@@ -254,22 +275,6 @@ img{
     document.addEventListener('DOMContentLoaded', loadContent);
 </script>
 	
-<div id="4g-container" style="display: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
-    <!-- Tasto 4G -->
-    <div>
-        <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
-    </div>
-    
-    <!-- Tasto GLOBAL -->
-    <div id="global-menu" class="device-form">
-        <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
-    </div>
-</div>
-
-	
-<div id="global-menu" class="device-form" style="display: none;">
-    <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
-</div>
 
 <footer>
  <center>
