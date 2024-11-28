@@ -216,58 +216,53 @@ img{
 
     <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
 
-  
-<script>
-  function loadContent() {
-    var device = document.querySelector('input[name="device"]:checked').value;
-    var applicationForms = document.querySelectorAll('.lux-application-form');
-    const button = document.querySelector('esp-web-install-button');
-    
-    // Gestione visibilità dei form di applicazione
-    if (device === "Luxe") {
-      applicationForms.forEach(form => form.style.display = 'block');
-    } else {
-      applicationForms.forEach(form => form.style.display = 'none');
-    }
+    <script>
 
-    // Aggiorna la selezione sullo schermo
-    document.getElementById("device").textContent = device;
-    var application = document.querySelector('input[name="application"]:checked');
-    if (device === "Luxe" && application) {
-      document.getElementById("application").textContent = application.value;
-    } else {
-      document.getElementById("application").textContent = "N/A";
-    }
+    function loadContent() {
+      var device = document.querySelector('input[name = "device"]:checked').value;
+      var application = document.querySelector('input[name = "application"]:checked').value;
 
-    // Gestione visibilità del pulsante "CONNECT"
-    if (device === "Luxe" && application) {
-      button.style.visibility = "visible";
-      button.manifest = `./${device}/${application.value}/manifest_${device}_${application.value}.json`;
-    } else {
-      button.style.visibility = "hidden";
-    }
+      document.getElementById("device").innerHTML = device;
+      document.getElementById("application").innerHTML = application;
 
-    // Caricamento descrizione del dispositivo/applicazione
-    fetch(`./${device}/${application ? application.value : ""}/${application ? application.value : ""}.html`)
+      //show application list for lux device only if lux is selected
+      var applicationForms = document.querySelectorAll('.lux-application-form');
+      if (device === "Luxe") {
+        applicationForms.forEach(function(form) {
+          form.style.display = 'block';
+        });
+      } else {
+        applicationForms.forEach(function(form) {
+          form.style.display = 'none';
+        });
+      }
+	    
+      fetch(`./${device}/${application}/${application}.html`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          const button = document.querySelector('esp-web-install-button');
+          button.manifest = `./${device}/${application}/manifest_${device}_${application}.json`;
+          button.classList.remove('invisible');
+          button.style.visibility = "visible";
+          return response.text()
         }
-        return response.text();
       })
       .then(data => {
         document.getElementById('descriptif').innerHTML = data;
+        // Enlever le bouton upload-button si le fichier n'est pas trouvé
+
+
       })
       .catch(error => {
         console.log(error);
-        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it!';
+        const button = document.querySelector('esp-web-install-button');
+        document.getElementById('descriptif').innerHTML = 'This project has not yet been ported for this device. Please let us know if you want it !';
+
+        button.style.visibility = "hidden";
       });
-  }
-
-  // Inizializza la visibilità all'avvio
-  document.addEventListener('DOMContentLoaded', loadContent);
-</script>
-
+    }
 
     // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
     document.addEventListener('DOMContentLoaded', loadContent);
