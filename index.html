@@ -67,13 +67,8 @@
       display: block; /* Assicurati che il tasto sia visibile */
       margin: 20px auto; /* Centra il tasto */
     }
-  </style>
-
-  <style>
-    #4g-container img {
-      width: 150px;
-      height: auto;
-      object-fit: contain;
+    .application-form {
+      display: none;
     }
   </style>
 </head>
@@ -93,65 +88,35 @@
       </tr>
       <tr>
         <td>
-          <div class="device-form">
+          <div class="device-form" id="lux-device">
             <img src="./Luxe/Luxe.png" alt="Luxe">
-            <input type="radio" name="device" value="Luxe" onclick="loadContent()"> Luxe
+            <input type="radio" name="device" value="Luxe" onclick="showDeviceContent('Luxe')"> Luxe
           </div>
-          <div class="device-form">
+          <div class="device-form" id="4g-device">
             <img src="./4G/4G.png" alt="4G">
-            <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
+            <input type="radio" name="device" value="4G" onclick="showDeviceContent('4G')"> 4G
           </div>
         </td>
         <td></td>
         <td>
           <!-- Form per l'applicazione Luxe -->
-          <div class="device-form lux-application-form">
+          <div class="application-form" id="lux-application-form">
             <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES
-          </div>
-          <div class="device-form lux-application-form">
             <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
           </div>
-        </td>
-      </tr>
-    </table>
-
-    <table align="center" id="4g-container" style="display: none;">
-      <tr>
-        <td>
-          <!-- Tasto 4G -->
-          <div class="device-form">
-            <img src="./4G/4G.png" alt="4G">
-            <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
-          </div>
-        </td>
-        <td>
-          <!-- Tasto GLOBAL -->
-          <div class="device-form">
+          <!-- Form per l'applicazione 4G -->
+          <div class="application-form" id="4g-application-form">
             <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
           </div>
         </td>
       </tr>
     </table>
-
-    <div id="descriptif"></div>
 
     <div id="selection">
       <p>Selected Device: <span id="device"></span></p>
@@ -165,33 +130,24 @@
 
   <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
   <script>
-    function loadContent() {
-      var device = document.querySelector('input[name="device"]:checked');
-      if (device) {
-        document.getElementById("device").innerHTML = device.value;
-        document.getElementById("application").innerHTML = ""; // Reset application
+    function showDeviceContent(selectedDevice) {
+      // Nascondi tutti i moduli di applicazione
+      document.querySelectorAll('.application-form').forEach(function(form) {
+        form.style.display = 'none';
+      });
 
-        var applicationForms = document.querySelectorAll('.lux-application-form');
-        var container4G = document.getElementById('4g-container');
+      document.getElementById('device').textContent = selectedDevice;
 
-        if (device.value === "Luxe") {
-          applicationForms.forEach(form => form.style.display = 'block');
-          container4G.style.display = 'none';
-        } else if (device.value === "4G") {
-          applicationForms.forEach(form => form.style.display = 'none');
-          container4G.style.display = 'table'; // Mostra tabella 4G
-        } else {
-          applicationForms.forEach(form => form.style.display = 'none');
-          container4G.style.display = 'none';
-        }
+      if (selectedDevice === 'Luxe') {
+        document.getElementById('lux-application-form').style.display = 'block';
+      } else if (selectedDevice === '4G') {
+        document.getElementById('4g-application-form').style.display = 'block';
       }
     }
 
     function updateApplication(app) {
       document.getElementById("application").textContent = app;
     }
-
-    document.addEventListener('DOMContentLoaded', loadContent);
   </script>
 
   <footer>
