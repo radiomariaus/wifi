@@ -253,7 +253,20 @@ img{
     // Esegui loadContent all'avvio per impostare correttamente la visibilità dei form
     document.addEventListener('DOMContentLoaded', loadContent);
 </script>
+	
+<div id="4g-container" style="display: none; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <!-- Tasto 4G -->
+    <div>
+        <input type="radio" name="device" value="4G" onclick="loadContent()"> 4G
+    </div>
+    
+    <!-- Tasto GLOBAL -->
+    <div id="global-menu" class="device-form">
+        <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
+    </div>
+</div>
 
+	
 <div id="global-menu" class="device-form" style="display: none;">
     <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
 </div>
