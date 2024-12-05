@@ -53,7 +53,7 @@
     img {
       width: 150px;
       height: auto;
-      object-fit: contain;
+      object-fit: contain; /* Mantiene le proporzioni */
     }
     .device-form {
       margin: 10px 0;
@@ -64,13 +64,14 @@
       margin-top: 20px;
     }
     .upload-button {
-      display: block;
-      margin: 20px auto;
+      display: block; /* Assicurati che il tasto sia visibile */
+      margin: 20px auto; /* Centra il tasto */
     }
    .application-form input {
      display: block;
      margin: 5px auto;
     }
+
   </style>
 </head>
 
@@ -125,42 +126,57 @@
     </div>
 
     <div class="button-row">
-      <esp-web-install-button class="upload-button" id="connect-button"></esp-web-install-button>
+      <button id="actionButton" class="upload-button" onclick="performAction()">Connect</button>
     </div>
   </div>
 
   <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
   <script>
-    function showDeviceContent(selectedDevice) {
+    let selectedDevice = "";
+    let selectedApplication = "";
+
+    function showDeviceContent(device) {
       // Nascondi tutti i moduli di applicazione
       document.querySelectorAll('.application-form').forEach(function(form) {
         form.style.display = 'none';
       });
 
-      document.getElementById('device').textContent = selectedDevice;
+      document.getElementById('device').textContent = device;
+      selectedDevice = device;
 
-      if (selectedDevice === 'Luxe') {
+      if (device === 'Luxe') {
         document.getElementById('lux-application-form').style.display = 'block';
-      } else if (selectedDevice === '4G') {
+      } else if (device === '4G') {
         document.getElementById('4g-application-form').style.display = 'block';
       }
+
+      updateButtonState();
     }
 
     function updateApplication(app) {
       document.getElementById("application").textContent = app;
-      const connectButton = document.getElementById("connect-button");
+      selectedApplication = app;
+      updateButtonState();
+    }
 
-      if (app === "GLOBAL") {
-        // Trasforma il tasto in un pulsante di download
-        connectButton.innerHTML = "<a href='./4G/GLOBAL/firmware.bin' download='firmware.bin' style='text-decoration:none;color:white;'>Download</a>";
-        connectButton.style.backgroundColor = "#6EC1E4";
-        connectButton.style.padding = "10px 20px";
-        connectButton.style.borderRadius = "5px";
-        connectButton.style.textAlign = "center";
+    function updateButtonState() {
+      const button = document.getElementById("actionButton");
+
+      if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
+        button.textContent = "Download";
+        button.onclick = function() {
+          window.location.href = "./4G/GLOBAL/firmware.bin"; // Percorso del firmware
+        };
       } else {
-        // Ritorna al comportamento originale
-        connectButton.innerHTML = "Connect";
+        button.textContent = "Connect";
+        button.onclick = function() {
+          alert("Connecting to device..."); // Azione predefinita per Connect
+        };
       }
+    }
+
+    function performAction() {
+      // Funzione placeholder per azione dinamica
     }
   </script>
 
