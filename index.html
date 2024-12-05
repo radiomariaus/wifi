@@ -89,6 +89,10 @@
       </tr>
       <tr>
         <td>
+          <div class="device-form" id="lux-device">
+            <img src="./Luxe/Luxe.png" alt="Luxe">
+            <input type="radio" name="device" value="Luxe" onclick="selectDevice('Luxe')"> Luxe
+          </div>
           <div class="device-form" id="4g-device">
             <img src="./4G/4G.png" alt="4G">
             <input type="radio" name="device" value="4G" onclick="selectDevice('4G')"> 4G
@@ -96,7 +100,17 @@
         </td>
         <td></td>
         <td>
-          <div class="application-form" id="4g-application-form">
+          <div class="application-form" id="lux-application-form" style="display: none;">
+            <input type="radio" name="application" value="AL" onclick="selectApplication('AL')"> AL
+            <input type="radio" name="application" value="CA" onclick="selectApplication('CA')"> CA
+            <input type="radio" name="application" value="IT" onclick="selectApplication('IT')"> IT
+            <input type="radio" name="application" value="LT" onclick="selectApplication('LT')"> LT
+            <input type="radio" name="application" value="RU" onclick="selectApplication('RU')"> RU
+            <input type="radio" name="application" value="US-EN" onclick="selectApplication('US-EN')"> US-EN
+            <input type="radio" name="application" value="US-ES" onclick="selectApplication('US-ES')"> US-ES
+            <input type="radio" name="application" value="US-IT" onclick="selectApplication('US-IT')"> US-IT
+          </div>
+          <div class="application-form" id="4g-application-form" style="display: none;">
             <input type="radio" name="application" value="GLOBAL" onclick="selectApplication('GLOBAL')"> GLOBAL
           </div>
         </td>
@@ -109,7 +123,7 @@
     </div>
 
     <div class="button-row">
-      <button class="upload-button" id="action-button" style="display: none;" onclick="downloadFirmware()">Download</button>
+      <button class="upload-button" id="action-button" style="display: none;" onclick="performAction()">Connect</button>
     </div>
   </div>
 
@@ -120,6 +134,15 @@
     function selectDevice(device) {
       selectedDevice = device;
       document.getElementById('selected-device').textContent = device;
+
+      // Show/Hide application forms based on the selected device
+      document.getElementById('lux-application-form').style.display = (device === 'Luxe') ? 'block' : 'none';
+      document.getElementById('4g-application-form').style.display = (device === '4G') ? 'block' : 'none';
+
+      // Reset application selection
+      selectedApplication = null;
+      document.getElementById('selected-application').textContent = 'None';
+
       updateButtonState();
     }
 
@@ -132,15 +155,21 @@
     function updateButtonState() {
       const button = document.getElementById('action-button');
       if (selectedDevice === '4G' && selectedApplication === 'GLOBAL') {
+        button.textContent = 'Download';
+        button.style.display = 'block';
+      } else if (selectedDevice === 'Luxe' && selectedApplication) {
+        button.textContent = 'Connect';
         button.style.display = 'block';
       } else {
         button.style.display = 'none';
       }
     }
 
-    function downloadFirmware() {
+    function performAction() {
       if (selectedDevice === '4G' && selectedApplication === 'GLOBAL') {
         window.location.href = './4G/GLOBAL/maria4gV04b-3.bin';
+      } else if (selectedDevice === 'Luxe' && selectedApplication) {
+        alert(`Connecting to Luxe application: ${selectedApplication}`);
       }
     }
   </script>
@@ -151,4 +180,3 @@
   </footer>
 </body>
 </html>
-
