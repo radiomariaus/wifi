@@ -53,7 +53,7 @@
     img {
       width: 150px;
       height: auto;
-      object-fit: contain;
+      object-fit: contain; /* Mantiene le proporzioni */
     }
     .device-form {
       margin: 10px 0;
@@ -64,13 +64,14 @@
       margin-top: 20px;
     }
     .upload-button {
-      display: block;
-      margin: 20px auto;
+      display: block; /* Assicurati che il tasto sia visibile */
+      margin: 20px auto; /* Centra il tasto */
     }
-    .application-form input {
-      display: block;
-      margin: 5px auto;
+   .application-form input {
+     display: block;
+     margin: 5px auto;
     }
+
   </style>
 </head>
 
@@ -91,96 +92,91 @@
         <td>
           <div class="device-form" id="lux-device">
             <img src="./Luxe/Luxe.png" alt="Luxe">
-            <input type="radio" name="device" value="Luxe" onclick="selectDevice('Luxe')"> Luxe
+            <input type="radio" name="device" value="Luxe" onclick="showDeviceContent('Luxe')"> Luxe
           </div>
           <div class="device-form" id="4g-device">
             <img src="./4G/4G.png" alt="4G">
-            <input type="radio" name="device" value="4G" onclick="selectDevice('4G')"> 4G
+            <input type="radio" name="device" value="4G" onclick="showDeviceContent('4G')"> 4G
           </div>
         </td>
         <td></td>
         <td>
-          <div class="application-form" id="lux-application-form" style="display: none;">
-            <input type="radio" name="application" value="AL" onclick="selectApplication('AL')"> AL
-            <input type="radio" name="application" value="CA" onclick="selectApplication('CA')"> CA
-            <input type="radio" name="application" value="IT" onclick="selectApplication('IT')"> IT
-            <input type="radio" name="application" value="LT" onclick="selectApplication('LT')"> LT
-            <input type="radio" name="application" value="RU" onclick="selectApplication('RU')"> RU
-            <input type="radio" name="application" value="US-EN" onclick="selectApplication('US-EN')"> US-EN
-            <input type="radio" name="application" value="US-ES" onclick="selectApplication('US-ES')"> US-ES
-            <input type="radio" name="application" value="US-IT" onclick="selectApplication('US-IT')"> US-IT
+          <!-- Form per l'applicazione Luxe -->
+          <div class="application-form" id="lux-application-form">
+            <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
+            <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
+            <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
+            <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT
+            <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU
+            <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN
+            <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES
+            <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
           </div>
-          <div class="application-form" id="4g-application-form" style="display: none;">
-            <input type="radio" name="application" value="GLOBAL" onclick="selectApplication('GLOBAL')"> GLOBAL
+          <!-- Form per l'applicazione 4G -->
+          <div class="application-form" id="4g-application-form">
+            <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
           </div>
         </td>
       </tr>
     </table>
 
     <div id="selection">
-      <p>Selected Device: <span id="selected-device">None</span></p>
-      <p>Selected Application: <span id="selected-application">None</span></p>
+      <p>Selected Device: <span id="device"></span></p>
+      <p>Selected Application: <span id="application"></span></p>
     </div>
 
     <div class="button-row">
-      <button class="upload-button" id="action-button" style="display: none;" onclick="performAction()">Connect</button>
+      <button id="actionButton" class="upload-button" onclick="performAction()">Connect</button>
     </div>
   </div>
 
+  <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
   <script>
-    let selectedDevice = null;
-    let selectedApplication = null;
+    let selectedDevice = "";
+    let selectedApplication = "";
 
-    function selectDevice(device) {
+    function showDeviceContent(device) {
+      // Nascondi tutti i moduli di applicazione
+      document.querySelectorAll('.application-form').forEach(function(form) {
+        form.style.display = 'none';
+      });
+
+      document.getElementById('device').textContent = device;
       selectedDevice = device;
-      document.getElementById('selected-device').textContent = device;
 
-      // Show/Hide application forms based on the selected device
-      document.getElementById('lux-application-form').style.display = (device === 'Luxe') ? 'block' : 'none';
-      document.getElementById('4g-application-form').style.display = (device === '4G') ? 'block' : 'none';
-
-      // Reset application selection
-      selectedApplication = null;
-      document.getElementById('selected-application').textContent = 'None';
+      if (device === 'Luxe') {
+        document.getElementById('lux-application-form').style.display = 'block';
+      } else if (device === '4G') {
+        document.getElementById('4g-application-form').style.display = 'block';
+      }
 
       updateButtonState();
     }
 
-    function selectApplication(application) {
-      selectedApplication = application;
-      document.getElementById('selected-application').textContent = application;
+    function updateApplication(app) {
+      document.getElementById("application").textContent = app;
+      selectedApplication = app;
       updateButtonState();
     }
 
     function updateButtonState() {
-      const button = document.getElementById('action-button');
-      if (selectedDevice === '4G' && selectedApplication === 'GLOBAL') {
-        button.textContent = 'Download';
-        button.style.display = 'block';
-      } else if (selectedDevice === 'Luxe' && selectedApplication) {
-        button.textContent = 'Connect';
-        button.style.display = 'block';
+      const button = document.getElementById("actionButton");
+
+      if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
+        button.textContent = "Download";
+        button.onclick = function() {
+          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin"; // 
+        };
       } else {
-        button.style.display = 'none';
+        button.textContent = "Connect";
+        button.onclick = function() {
+          alert("Connecting to device..."); // Azione predefinita per Connect
+        };
       }
     }
 
-    async function performAction() {
-      if (selectedDevice === '4G' && selectedApplication === 'GLOBAL') {
-        window.location.href = './4G/GLOBAL/maria4gV04b-3.bin';
-      } else if (selectedDevice === 'Luxe' && selectedApplication) {
-        try {
-          const port = await navigator.serial.requestPort();
-          await port.open({ baudRate: 9600 });
-          const writer = port.writable.getWriter();
-          const data = new TextEncoder().encode(`Connecting to Luxe application: ${selectedApplication}\n`);
-          await writer.write(data);
-          writer.releaseLock();
-          alert(`Connected to Luxe application: ${selectedApplication}`);
-        } catch (err) {
-          alert(`Failed to connect: ${err.message}`);
-        }
-      }
+    function performAction() {
+      // Funzione placeholder per azione dinamica
     }
   </script>
 
