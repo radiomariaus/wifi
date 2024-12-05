@@ -100,14 +100,14 @@
         <td>
           <!-- Form per l'applicazione Luxe -->
           <div class="application-form" id="lux-application-form" style="display: none;">
-            <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> Radio Maria ALBANIA <br />
-            <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> Radio Maria CANADA <br />
-            <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> Radio Maria ITALY <br />
-            <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> Radio Maria LITHUANIA <br />
-            <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> Radio Maria RUSSIA <br />
-            <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> Radio Maria US-English streaming <br />
-            <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> Radio Maria US-Spanish streaming<br />
-            <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> Radio Maria US-Italian streaming<br />
+            <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> RM ALBANIA <br />
+            <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> RM CANADA <br />
+            <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> RM ITALY <br />
+            <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> RM LITHUANIA <br />
+            <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RM RUSSIA <br />
+            <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> RM US-English streaming <br />
+            <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> RM US-Spanish streaming<br />
+            <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> RM US-Italian streaming<br />
           </div>
           <!-- Form per l'applicazione 4G -->
           <div class="application-form" id="4g-application-form" style="display: none;">
@@ -123,7 +123,7 @@
     </div>
 
     <div class="button-row">
-      <button id="actionButton" class="upload-button" onclick="performAction()">Connect</button>
+      <button id="actionButton" class="upload-button" onclick="performAction()">LOAD FIRMWARE</button>
     </div>
   </div>
 
@@ -160,7 +160,7 @@
       const button = document.getElementById("actionButton");
 
       if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
-        button.textContent = "Download";
+        button.textContent = "LOAD FIRMWARE";
         button.onclick = function() {
           window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin"; // 
         };
@@ -179,7 +179,7 @@
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p>V-241205.2032</p>
+    <p>V-241205.2035</p>
   </footer>
 </body>
 </html>
