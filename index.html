@@ -67,11 +67,10 @@
       display: block; /* Assicurati che il tasto sia visibile */
       margin: 20px auto; /* Centra il tasto */
     }
-   .application-form input {
-     display: block;
-     margin: 5px auto;
+    .application-form input {
+      display: block;
+      margin: 5px auto;
     }
-
   </style>
 </head>
 
@@ -126,57 +125,40 @@
     </div>
 
     <div class="button-row">
-      <button id="actionButton" class="upload-button" onclick="performAction()">Connect</button>
+      <esp-web-install-button class="upload-button" id="install-button"></esp-web-install-button>
     </div>
   </div>
 
   <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
   <script>
-    let selectedDevice = "";
-    let selectedApplication = "";
-
-    function showDeviceContent(device) {
+    function showDeviceContent(selectedDevice) {
       // Nascondi tutti i moduli di applicazione
       document.querySelectorAll('.application-form').forEach(function(form) {
         form.style.display = 'none';
       });
 
-      document.getElementById('device').textContent = device;
-      selectedDevice = device;
+      document.getElementById('device').textContent = selectedDevice;
 
-      if (device === 'Luxe') {
+      if (selectedDevice === 'Luxe') {
         document.getElementById('lux-application-form').style.display = 'block';
-      } else if (device === '4G') {
+      } else if (selectedDevice === '4G') {
         document.getElementById('4g-application-form').style.display = 'block';
       }
-
-      updateButtonState();
     }
 
     function updateApplication(app) {
       document.getElementById("application").textContent = app;
-      selectedApplication = app;
-      updateButtonState();
-    }
-
-    function updateButtonState() {
-      const button = document.getElementById("actionButton");
-
-      if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
-        button.textContent = "Download";
-        button.onclick = function() {
-          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin"; // 
+      if (app === 'GLOBAL' && document.getElementById('device').textContent === '4G') {
+        document.getElementById('install-button').textContent = 'Download';
+        document.getElementById('install-button').onclick = function() {
+          window.location.href = './4G/GLOBAL/global.html';
         };
       } else {
-        button.textContent = "Connect";
-        button.onclick = function() {
-          alert("Connecting to device..."); // Azione predefinita per Connect
+        document.getElementById('install-button').textContent = 'Connect';
+        document.getElementById('install-button').onclick = function() {
+          alert('Connecting...');
         };
       }
-    }
-
-    function performAction() {
-      // Funzione placeholder per azione dinamica
     }
   </script>
 
@@ -186,3 +168,4 @@
   </footer>
 </body>
 </html>
+
