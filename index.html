@@ -71,7 +71,6 @@
      display: block;
      margin: 5px auto;
     }
-
   </style>
 </head>
 
@@ -102,7 +101,7 @@
         <td></td>
         <td>
           <!-- Form per l'applicazione Luxe -->
-          <div class="application-form" id="lux-application-form">
+          <div class="application-form" id="lux-application-form" style="display: none;">
             <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
             <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
             <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
@@ -113,8 +112,9 @@
             <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
           </div>
           <!-- Form per l'applicazione 4G -->
-          <div class="application-form" id="4g-application-form">
-            <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
+          <div class="application-form" id="4g-application-form" style="display: none;">
+            <input type="radio" name="application" value="GLOBAL" id="4gButton" onclick="updateApplication('GLOBAL')"> GLOBAL
+            <button id="globalButton" style="display: none;">Vai a GLOBAL</button>
           </div>
         </td>
       </tr>
@@ -149,22 +149,18 @@
 
     function updateApplication(app) {
       document.getElementById("application").textContent = app;
+
+      if (app === 'GLOBAL') {
+        // Mostra il pulsante per GLOBAL
+        document.getElementById('globalButton').style.display = 'inline-block';
+      }
     }
-  </script>
-
-
-
-  <script>
-    document.getElementById('4gButton').addEventListener('click', function() {
-        // Mostra il bottone GLOBAL quando si clicca su 4G
-        document.getElementById('globalButton').style.display = 'block';
-    });
 
     document.getElementById('globalButton').addEventListener('click', function() {
-        // Reindirizza a global.html
-        window.location.href = './4G/GLOBAL/global.html';
+      // Reindirizza a global.html
+      window.location.href = './4G/GLOBAL/global.html';
     });
-</script>
+  </script>
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
