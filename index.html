@@ -159,21 +159,26 @@
       updateButtonState();
     }
 
-    function updateButtonState() {
-      const button = document.getElementById("actionButton");
+function updateButtonState() {
+  const button = document.getElementById("actionButton");
 
-      if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
-        button.textContent = "Download";
-        button.onclick = function() {
-          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin"; // 
-        };
-      } else {
-        button.textContent = "Connect";
-        button.onclick = function() {
-          alert("Connecting to device..."); // Azione predefinita per Connect
-        };
-      }
-    }
+  if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
+    button.textContent = "Download";
+    button.onclick = function () {
+      window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin";
+    };
+  } else if (selectedDevice === "Luxe" && selectedApplication) {
+    button.textContent = "Connect";
+    button.onclick = function () {
+      connectToLuxeDevice();
+    };
+  } else {
+    button.textContent = "Connect";
+    button.onclick = function () {
+      alert("Please select a device and application.");
+    };
+  }
+}
 
     function performAction() {
       // Funzione placeholder per azione dinamica
