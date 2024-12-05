@@ -165,12 +165,21 @@
       }
     }
 
-    function performAction() {
+    async function performAction() {
       if (selectedDevice === '4G' && selectedApplication === 'GLOBAL') {
         window.location.href = './4G/GLOBAL/maria4gV04b-3.bin';
       } else if (selectedDevice === 'Luxe' && selectedApplication) {
-        alert(`Connecting to Luxe application: ${selectedApplication}`);
-        // Add functionality here to handle Luxe connection if necessary
+        try {
+          const port = await navigator.serial.requestPort();
+          await port.open({ baudRate: 9600 });
+          const writer = port.writable.getWriter();
+          const data = new TextEncoder().encode(`Connecting to Luxe application: ${selectedApplication}\n`);
+          await writer.write(data);
+          writer.releaseLock();
+          alert(`Connected to Luxe application: ${selectedApplication}`);
+        } catch (err) {
+          alert(`Failed to connect: ${err.message}`);
+        }
       }
     }
   </script>
