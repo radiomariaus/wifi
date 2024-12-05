@@ -152,6 +152,20 @@
     }
   </script>
 
+
+
+  <script>
+    document.getElementById('4gButton').addEventListener('click', function() {
+        // Mostra il bottone GLOBAL quando si clicca su 4G
+        document.getElementById('globalButton').style.display = 'block';
+    });
+
+    document.getElementById('globalButton').addEventListener('click', function() {
+        // Reindirizza a global.html
+        window.location.href = './4G/GLOBAL/global.html';
+    });
+</script>
+
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
     <p>V-24.10.14.22.52</p>
