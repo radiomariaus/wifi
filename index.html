@@ -55,7 +55,7 @@
       height: auto;
       object-fit: contain; /* Mantiene le proporzioni */
     }
-    .device-form {
+    .device-form, .application-form {
       margin: 10px 0;
       text-align: center;
     }
@@ -67,12 +67,9 @@
       display: block; /* Assicurati che il tasto sia visibile */
       margin: 20px auto; /* Centra il tasto */
     }
-   .application-form input {
+    input {
      display: block;
      margin: 5px auto;
-    }
-    input[type="radio"] {
-      vertical-align: baseline;
     }
 
   </style>
@@ -106,18 +103,18 @@
         <td>
           <!-- Form per l'applicazione Luxe -->
           <div class="application-form" id="lux-application-form">
-            <label><input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL </label>
-            <label><input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA </label>
-            <label><input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT </label>
-            <label><input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT </label>
-            <label><input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU </label>
-            <label><input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN </label>
-            <label><input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES </label>
-            <label><input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT </label>
+            <input type="radio" name="application" value="AL" onclick="updateApplication('AL')"> AL
+            <input type="radio" name="application" value="CA" onclick="updateApplication('CA')"> CA
+            <input type="radio" name="application" value="IT" onclick="updateApplication('IT')"> IT
+            <input type="radio" name="application" value="LT" onclick="updateApplication('LT')"> LT
+            <input type="radio" name="application" value="RU" onclick="updateApplication('RU')"> RU
+            <input type="radio" name="application" value="US-EN" onclick="updateApplication('US-EN')"> US-EN
+            <input type="radio" name="application" value="US-ES" onclick="updateApplication('US-ES')"> US-ES
+            <input type="radio" name="application" value="US-IT" onclick="updateApplication('US-IT')"> US-IT
           </div>
           <!-- Form per l'applicazione 4G -->
           <div class="application-form" id="4g-application-form">
-            <label><input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL </label>
+            <input type="radio" name="application" value="GLOBAL" onclick="updateApplication('GLOBAL')"> GLOBAL
           </div>
         </td>
       </tr>
@@ -185,7 +182,7 @@
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p>V-24.12.05.19.39</p>
+    <p>V-24.12.05.19.53</p>
   </footer>
 </body>
 </html>
