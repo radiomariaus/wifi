@@ -123,6 +123,7 @@
 
     <div class="button-row">
       <esp-web-install-button id="espInstallButton" class="upload-button" style="display: none;"></esp-web-install-button>
+      <esp-web-install-button id="esp4gInstallButton" class="upload-button" style="display: none;"></esp-web-install-button>
       <button id="actionButton" class="upload-button" onclick="performAction()">LOAD FIRMWARE</button>
     </div>
   </div>
@@ -159,26 +160,29 @@
     function updateButtonState() {
       const actionButton = document.getElementById("actionButton");
       const espInstallButton = document.getElementById("espInstallButton");
+      const esp4gInstallButton = document.getElementById("esp4gInstallButton");
 
       if (selectedDevice === "Luxe" && selectedApplication) {
         // Mostra il pulsante ESP Web Install e nascondi l'altro
         actionButton.style.display = "none";
         espInstallButton.style.display = "block";
+        esp4gInstallButton.style.display = "none";
 
         // Configura il pulsante ESP Web Install
         espInstallButton.setAttribute("manifest", `./Luxe/${selectedApplication}/manifest.json`);
       } else if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
-        // Reimposta il pulsante LOAD FIRMWARE per 4G GLOBAL
-        actionButton.style.display = "block";
+        // Mostra il pulsante ESP Web Install per 4G GLOBAL
+        actionButton.style.display = "none";
         espInstallButton.style.display = "none";
-        actionButton.textContent = "LOAD FIRMWARE";
-        actionButton.onclick = function () {
-          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin";
-        };
+        esp4gInstallButton.style.display = "block";
+
+        // Configura il pulsante ESP Web Install
+        esp4gInstallButton.setAttribute("binary", "./4G/GLOBAL/maria4gV04b-3.bin");
       } else {
         // Reimposta azione predefinita
         actionButton.style.display = "block";
         espInstallButton.style.display = "none";
+        esp4gInstallButton.style.display = "none";
         actionButton.textContent = "Connect";
         actionButton.onclick = function () {
           alert("Connecting to device...");
