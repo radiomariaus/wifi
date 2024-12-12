@@ -66,7 +66,6 @@
       display: block; /* Assicurati che il tasto sia visibile */
       margin: 20px auto; /* Centra il tasto */
     }
-
   </style>
 </head>
 
@@ -123,6 +122,7 @@
     </div>
 
     <div class="button-row">
+      <esp-web-install-button id="espInstallButton" class="upload-button" style="display: none;"></esp-web-install-button>
       <button id="actionButton" class="upload-button" onclick="performAction()">LOAD FIRMWARE</button>
     </div>
   </div>
@@ -134,7 +134,7 @@
 
     function showDeviceContent(device) {
       // Nascondi tutti i moduli di applicazione
-      document.querySelectorAll('.application-form').forEach(function(form) {
+      document.querySelectorAll('.application-form').forEach(function (form) {
         form.style.display = 'none';
       });
 
@@ -157,17 +157,31 @@
     }
 
     function updateButtonState() {
-      const button = document.getElementById("actionButton");
+      const actionButton = document.getElementById("actionButton");
+      const espInstallButton = document.getElementById("espInstallButton");
 
-      if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
-        button.textContent = "LOAD FIRMWARE";
-        button.onclick = function() {
-          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin"; // 
+      if (selectedDevice === "Luxe" && selectedApplication) {
+        // Mostra il pulsante ESP Web Install e nascondi l'altro
+        actionButton.style.display = "none";
+        espInstallButton.style.display = "block";
+
+        // Configura il pulsante ESP Web Install
+        espInstallButton.setAttribute("manifest", `./Luxe/${selectedApplication}/manifest.json`);
+      } else if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
+        // Reimposta il pulsante LOAD FIRMWARE per 4G GLOBAL
+        actionButton.style.display = "block";
+        espInstallButton.style.display = "none";
+        actionButton.textContent = "LOAD FIRMWARE";
+        actionButton.onclick = function () {
+          window.location.href = "./4G/GLOBAL/maria4gV04b-3.bin";
         };
       } else {
-        button.textContent = "Connect";
-        button.onclick = function() {
-          alert("Connecting to device..."); // Azione predefinita per Connect
+        // Reimposta azione predefinita
+        actionButton.style.display = "block";
+        espInstallButton.style.display = "none";
+        actionButton.textContent = "Connect";
+        actionButton.onclick = function () {
+          alert("Connecting to device...");
         };
       }
     }
