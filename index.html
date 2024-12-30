@@ -146,7 +146,6 @@
       } else if (device === '4G') {
         document.getElementById('4g-application-form').style.display = 'block';
       }
-
       updateButtonState();
     }
 
@@ -161,8 +160,8 @@
       const espInstallButton = document.getElementById("espInstallButton");
       const esp4gInstallButton = document.getElementById("esp4gInstallButton");
 
-      if (selectedDevice === "Luxe" && selectedApplication) {
-        // Mostra il pulsante ESP Web Install e nascondi l'altro
+      if (selectedDevice === "Luxe" && selectedApplication !== "GLOBAL") {
+        // Mostra il pulsante ESP Web Install e nascondi l'altro quando l'app scelta è diversa da GLOBAL
         actionButton.style.display = "none";
         espInstallButton.style.display = "block";
         esp4gInstallButton.style.display = "none";
@@ -184,7 +183,7 @@
         esp4gInstallButton.style.display = "none";
         //actionButton.textContent = "Connect";
         //actionButton.onclick = function () {
-        //  alert("Connecting to device...");
+        //  alert("Choose a firmware to load...");
         //};
       }
     }
@@ -196,7 +195,7 @@
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p>V-241230.1349</p>
+    <p>V-241230.1355</p>
   </footer>
 </body>
 </html>
