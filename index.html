@@ -178,14 +178,14 @@
         // Configura il pulsante ESP Web Install
         esp4gInstallButton.setAttribute("binary", "./4G/GLOBAL/maria4gV04b-3.bin");
       } else {
-        // Reimposta azione predefinita
-        actionButton.style.display = "block";
+        // Reimposta azione predefinita, button is visible only after option selected
+        actionButton.style.display = "none";
         espInstallButton.style.display = "none";
         esp4gInstallButton.style.display = "none";
-        actionButton.textContent = "Connect";
-        actionButton.onclick = function () {
-          alert("Connecting to device...");
-        };
+        //actionButton.textContent = "Connect";
+        //actionButton.onclick = function () {
+        //  alert("Connecting to device...");
+        //};
       }
     }
 
@@ -196,7 +196,7 @@
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p>V-241230.1345</p>
+    <p>V-241230.1349</p>
   </footer>
 </body>
 </html>
