@@ -167,7 +167,7 @@
         esp4gInstallButton.style.display = "none";
 
         // Configura il pulsante ESP Web Install
-        espInstallButton.setAttribute("manifest", `./Luxe/${selectedApplication}/manifest.json`);
+        espInstallButton.setAttribute("manifest", `./Luxe/${selectedApplication}/manifest_${selectedDevice}_${selectedApplication}.json`);
       } else if (selectedDevice === "4G" && selectedApplication === "GLOBAL") {
         // Mostra il pulsante ESP Web Install per 4G GLOBAL
         actionButton.style.display = "none";
@@ -175,7 +175,7 @@
         esp4gInstallButton.style.display = "block";
 
         // Configura il pulsante ESP Web Install
-        esp4gInstallButton.setAttribute("binary", "./4G/GLOBAL/maria4gV04b-3.bin");
+        espInstallButton.setAttribute("manifest", `./4G/${selectedApplication}/manifest_${selectedDevice}_${selectedApplication}.json`);
       } else {
         // Reimposta azione predefinita, button is visible only after option selected
         actionButton.style.display = "none";
@@ -195,7 +195,7 @@
 
   <footer>
     <p>You can purchase Luxe WiFi from Amazon by opening <a href="https://amzn.to/3CvVpOA" target="_blank">this link.</a></p>
-    <p>V-241230.1401</p>
+    <p>V-20241230.1415</p>
   </footer>
 </body>
 </html>
