@@ -5,7 +5,7 @@
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        { "path": "./maria4gV04b-3.bin", "offset": 0}
+        { "path": "./maria4gV06b.bin", "offset": 0}
       ]
     }
   ]
