@@ -1,11 +1,11 @@
 {
   "name": "RADIOMARIA 4G Radio firmware",
-  "version": "1.0.0",
+  "version": "1.0.0a",
   "builds": [
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        { "path": "./maria4gV1.0.0.bin", "offset": 0}
+        { "path": "./maria4gV1.0.0a.bin", "offset": 0}
       ]
     }
   ]
