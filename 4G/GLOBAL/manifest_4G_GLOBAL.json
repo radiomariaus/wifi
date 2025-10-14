@@ -1,6 +1,6 @@
 {
   "name": "RADIOMARIA 4G Radio firmware",
-  "version": "1.0a",
+  "version": "1.0b",
   "builds": [
     {
       "chipFamily": "ESP32-S3",
